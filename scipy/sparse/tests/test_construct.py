@@ -718,6 +718,11 @@ class TestConstructUtils:
             assert_(np.any(np.less(x.data, 0)))
             assert_(np.any(np.less(1, x.data)))
 
+    def test_large_random(self):
+        n = 20000000
+        m = construct.random(n, n, density=10/n/n, random_state=np.random.default_rng())
+        assert_(not isinstance(m, sparray))
+
     def test_random_accept_str_dtype(self):
         # anything that np.dtype can convert to a dtype should be accepted
         # for the dtype
